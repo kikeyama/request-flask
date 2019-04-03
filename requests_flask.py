@@ -18,11 +18,13 @@ while(1):
             res = requests.get(url, params=param)
         except:
             time.sleep(30)
+            continue
     else:
         try:
             res = requests.get(url)
         except:
             time.sleep(30)
+            continue
     sleep_ms = float(randint(100, 1000))
     sleep_s = sleep_ms / 1000
 #    print sleep_s
