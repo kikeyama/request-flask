@@ -41,8 +41,15 @@ while(1):
             logger.error('error ' + url + '; ' + str(e))
             time.sleep(3)
             continue
+
     sleep_ms = float(randint(100, 1000))
-    sleep_s = sleep_ms / 1000
-#    print sleep_s
-#    time.sleep(0.1)
+    
+    # spike for watchdog
+    hour = int(time.time() % (24 * 3600) // 3600)
+    divider = 1000
+    if hour == 0:
+        # override divider for spike
+        divider = 100
+
+    sleep_s = sleep_ms / divider
     time.sleep(sleep_s)
