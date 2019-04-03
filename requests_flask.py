@@ -28,8 +28,8 @@ while(1):
             logger.info('requesting ' + url + '?name=' + param['name'])
             res = requests.get(url, params=param)
             logger.info('succeeded ' + url + '?name=' + param['name'])
-        except:
-            logger.error('error ' + url + '?name=' + param['name'] + '; waiting for 30 sec')
+        except Exception as e:
+            logger.error('error ' + url + '?name=' + param['name'] + '; ' + str(e.message))
             time.sleep(3)
             continue
     else:
@@ -37,8 +37,8 @@ while(1):
             logger.info('requesting ' + url)
             res = requests.get(url)
             logger.info('succeeded ' + url)
-        except:
-            logger.error('error ' + url + '; waiting for 30 sec')
+        except Exception as e:
+            logger.error('error ' + url + '; ' + str(e.message))
             time.sleep(3)
             continue
     sleep_ms = float(randint(100, 1000))
