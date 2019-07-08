@@ -7,7 +7,7 @@ http_port = os.environ.get('HTTP_PORT', '443')
 http_scheme = os.environ.get('HTTP_SCHEME', 'https')
 
 domain = '%s://%s:%s' % (http_scheme, http_host, http_port)
-paths = ['/', '/api/apm', '/api/trace']
+paths = ['/', '/api/apm', '/api/trace', '/api/post']
 params = ['orange', 'apple', 'banana', 'strawberry', 'error']
 
 logger = logging.getLogger()
@@ -32,6 +32,9 @@ while(1):
             logger.error('error ' + url + '?name=' + param['name'] + '; ' + str(e))
             time.sleep(3)
             continue
+    elif path == '/api/post':
+        res = requests.post(url, data = {'message':'hello world'})
+        logger.info('succeeded ' + url)
     else:
         try:
             logger.info('requesting ' + url)

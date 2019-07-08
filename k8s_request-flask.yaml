@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: request-flask
+  #namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: request-flask
+  template:
+    metadata:
+      labels:
+        app: request-flask
+    spec:
+      containers:
+      - name: request-flask  
+        image: gcr.io/datadog-demodog/request-flask:latest
+        env:
+        - name: HTTP_HOST
+          value: "demo-flask"
+        - name: HTTP_PORT
+          value: "80"
+        - name: HTTP_SCHEME
+          value: "http"
