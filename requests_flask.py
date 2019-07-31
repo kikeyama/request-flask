@@ -7,7 +7,7 @@ http_port = os.environ.get('HTTP_PORT', '443')
 http_scheme = os.environ.get('HTTP_SCHEME', 'https')
 
 domain = '%s://%s:%s' % (http_scheme, http_host, http_port)
-paths = ['/', '/api/apm', '/api/trace', '/api/post']
+paths = ['/', '/api/apm', '/api/trace', '/api/post', '/lambda']
 params = ['orange', 'apple', 'banana', 'strawberry', 'error']
 
 logger = logging.getLogger()
